@@ -1,0 +1,12 @@
+{
+  "name": "Wayland_Camera_Fix",
+  "tree": {
+    "$className": "DataModel",
+
+    "Workspace": {
+      "plugin": {
+        "$path": "plugin"
+      }
+    }
+  }
+}

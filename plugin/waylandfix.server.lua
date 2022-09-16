@@ -16,20 +16,19 @@ if not Camera then
 end
 
 local Sens = 5
-
+ 
 local function Rotate(Hit)
     local function m_2D_3DVector()
         local SPTR = Camera:ScreenPointToRay(Hit.x,Hit.y,0)
         return (SPTR.Origin+Camera.CFrame.LookVector+SPTR.Direction*(Camera.CFrame.p-Hit).Magnitude*2)
     end
-    local M_pos = m_2D_3DVector()
-    Camera.CFrame=CFrame.lookAt(Camera.CFrame.p,Vector3.new(M_pos.x,math.clamp(-1e6,M_pos.y,1e6 ),M_pos.z)/Sens)
+    local M_pos = m_2D_3DVector()/Sens
+    Camera.CFrame=CFrame.lookAt(Camera.CFrame.p,Vector3.new(M_pos.x,M_pos.y,M_pos.z))
 end
 UIS.InputChanged:Connect(function(input, _)
     if input.UserInputType == Enum.UserInputType.MouseMovement then
-        local Hit = input.Position
         if UIS:IsKeyDown(Enum.KeyCode.Space) then
-            Rotate(Hit)
+            Rotate(input.Position)
         end
     end
 end)
